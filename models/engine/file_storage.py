@@ -16,13 +16,14 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """Returns the dict objects"""
+        """Returns a dictionary of models currently in storage"""
         if cls is not None:
-            new_dict = {}
+            class_dict = {}
             for key, value in FileStorage.__objects.items():
                 if type(value) is cls:
-                    new_dict[key] = value.to_dict()
-            return new_dict
+                    class_dict[key] = value
+
+            return class_dict
         else:
             return FileStorage.__objects
 
