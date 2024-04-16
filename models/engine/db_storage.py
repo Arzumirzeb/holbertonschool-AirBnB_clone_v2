@@ -36,7 +36,8 @@ class DBStorage:
         objs = {}
         if cls is None:
             for class_name in self.all_classes:
-                objects = self.__session.query(class_name).all()
+                class_obj = eval(class_name)
+                objects = self.__session.query(class_obj).all()
                 for obj in objects:
                     key = "{}.{}".format(obj.__class__.__name__, obj.id)
                     objs[key] = obj
